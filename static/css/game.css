@@ -1,0 +1,42 @@
+.row{
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 0;
+}
+.column {
+    flex-basis: 0;
+    flex-grow: 1;
+    flex-basis: 3;
+    padding: 0.75em;
+}
+.containers{
+    margin-top: -30%;
+    width: 150%;
+    margin-left: -20%;
+    
+}
+.containers h1{
+    text-align: center;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@media screen and (max-width: 640px) {
+    .row{
+        display: flex;
+        flex-direction: column ;
+        margin-left: 0%;
+        margin-right: 0%;
+    }
+}
