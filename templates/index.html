@@ -348,15 +348,16 @@
             <div class="space-y-8 md:grid md:grid-cols-2 lg:grid-cols-3 md:gap-12 md:space-y-0">
                 <div class="card w-96 bg-base-100 shadow-xl" >
                     <figure class="px-10 pt-10">
-                      <img src="../static/images/charger.webp" alt="Shoes" class="rounded-xl" />
+                    
+                      <img src="{{url_for('static',filename='current_user.image_loader')}}" alt="Shoes" class="rounded-xl" />
                     </figure>
                     <div class="card-body items-center text-center">
-                      <h2 class="card-title">HP Laptop Charger</h2>
+                      <h2 class="card-title">{{current_user.title}}</h2>
                       <p class="text-black ">
                         <div class="rowu text-3xl">
                           
                           <img src="../static/images/icons8-naira-24.png" alt="">
-                          3500
+                          {{current_user.price}}
                         </div>
                       </p>
                       <div class="card-actions">
@@ -366,15 +367,15 @@
                   </div>
                   <div class="card w-96 bg-base-100 shadow-xl">
                     <figure class="px-10 pt-10">
-                      <img src="../static/images/desktop2.webp" alt="Shoes" class="rounded-xl" />
+                      <img src="static/{{current_user.image_loader}}" alt="Shoes" class="rounded-xl" />
                     </figure>
                     <div class="card-body items-center text-center">
-                      <h2 class="card-title">Intel Desktop</h2>
+                      <h2 class="card-title">{{current_user.title}}</h2>
                       <p  class="text-black"> 
                         <div class="rowu text-3xl">
                           
                           <img src="../static/images/icons8-naira-24.png" alt="">
-                          250000
+                          {{current_user.price}}
                         </div>
                       </p>
                       <div class="card-actions">
@@ -382,17 +383,18 @@
                       </div>
                     </div>
                   </div>
-                <div class="card w-96 bg-base-100 shadow-xl">
+                  <div class="card w-96 bg-base-100 shadow-xl">
                     <figure class="px-10 pt-10">
-                      <img src="../static/images/keyboard.webp" alt="Shoes" class="rounded-xl" />
+                      
+                      <img src="{{url_for('static',filename='{{current_user.image_loader}}')}}" alt="Shoes" class="rounded-xl" />
                     </figure>
                     <div class="card-body items-center text-center">
-                      <h2 class="card-title">wireless keyboard</h2>
-                      <p  class="text-black">
+                      <h2 class="card-title">{{current_user.title}}</h2>
+                      <p  class="text-black"> 
                         <div class="rowu text-3xl">
                           
                           <img src="../static/images/icons8-naira-24.png" alt="">
-                          8500
+                          {{current_user.price}}
                         </div>
                       </p>
                       <div class="card-actions">

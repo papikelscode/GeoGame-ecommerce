@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@2.27.0/dist/full.css" rel="stylesheet" type="text/css" />
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2/dist/tailwind.min.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="../static/css/modal.css">
+</head>
+<body>
+    
+
+
+    <div id="app" class="md:flex antialiased">
+        <aside class="w-full md:h-screen md:w-64 bg-gray-900 md:flex md:flex-col">
+            <header class="border-b border-solid border-gray-800 flex-grow">
+                <h1 class="py-6 px-4 text-gray-100 text-base font-medium">Geo Games </h1>
+            </header>
+            <nav class="overflow-y-auto h-full flex-grow">
+                <header>
+                    <span class="text-xs text-gray-500 block py-6 px-6">MENU</span>
+                </header>
+                <ul class="font-medium px-4 text-left">
+                    <li class="text-gray-100">
+                        <button  class="rounded text-sm text-left block py-3 px-6 hover:bg-blue-600 w-full">Post</button>
+                        
+                        <button href="#performance" v-on:click="select('new')" class="rounded text-sm block py-3 px-6 hover:bg-blue-600 w-full text-left">Logout</button>
+    
+                    </li>
+                </ul>
+            </nav>
+         
+              
+          
+    
+      
+        </aside>
+        
+        <main class="bg-gray-100 h-screen w-full overflow-y-auto">
+            <section v-if="active === 'performance'" id="performance">
+                <header class="border-b border-solid border-gray-300 bg-white">
+                    <h2 class="p-6">Hi User</h2>
+                </header>
+                <form action="dashboard" method="post" enctype="multipart/form-data">
+                    <label for="">Product Image</label> <br>
+                    <input id="productimage" type="file" name="file" value="Choose File" required> <br>
+                    <label for="">Product Name</label><br>
+                    <input name="productname" type="text">
+                    <br>
+                    <label for="">Product Price</label> <br>
+                    <input name="productprice" type="number">
+                    <br>
+                    <input type="submit" onclick="productinfo()">
+                </form>
+                    </section>
+                    <section id="chart" class="p-4">
+                        <!-- The button to open modal -->
+
+
+<!-- Put this part before </body> tag -->
+<input type="checkbox" id="my-modal" class="modal-toggle" />
+
+                        
+                    </section>
+                </section>
+    
+             
+               
+                   
+            </section>
+                
+             
+            </div>
+        </main>
+    
+    </div>
+
+
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="../static/js/dash.js"></script>
+<script src="../static/js/admin.js"></script>
+<script src="../static/js/axios.min.js"></script>
+
+</body>
+
+
+
+
+
+
+
+
+
+
+
+
+
+ </html>

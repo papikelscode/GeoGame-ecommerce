@@ -1,6 +1,7 @@
 from email.policy import default
+from fileinput import filename
 import re
-from flask import Flask, render_template, request, redirect, url_for,jsonify,abort
+from flask import Flask, render_template, request, redirect, url_for,jsonify,abort,flash
 # from flask.json import jsonify
 from flask_sqlalchemy import SQLAlchemy
 import sqlite3
@@ -10,6 +11,7 @@ from  flask_login import UserMixin, LoginManager, login_required, login_user, lo
 from flask_admin import Admin
 from flask_admin.contrib.sqla import ModelView
 import os
+from werkzeug.utils import secure_filename
 
 from datetime import datetime
 #from flask_marshmallow import Marshmallow
@@ -26,9 +28,22 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
 app.config['FLASK_ADMIN_SWATCH'] = 'cerulean'
 
 
+
 db = SQLAlchemy(app)
 
 
+
+UPLOAD_FOLDER = '/static'
+ALLOWED_EXTENSIONS = {'txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'}
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+
+
+def allowed_file(filename):
+    return '.' in filename and \
+           filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+def show_index():
+    full_image = os.path(app.config['UPLOAD_FOLDER'])
+    return render_template("index.html", image_loader = full_image)
 
 
 class homepage(db.Model):
@@ -44,8 +59,8 @@ class homepage(db.Model):
     def __repr__(self):
         return image_loader.self
          
-db.create_all()
-db.session.commit()
+# db.create_all()
+# db.session.commit()
 
 class game(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -60,8 +75,8 @@ class game(db.Model):
     def __repr__(self):
         return image_loader.self
          
-db.create_all()
-db.session.commit()
+# db.create_all()
+# db.session.commit()
 
 class laptops(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -76,8 +91,8 @@ class laptops(db.Model):
     def __repr__(self):
         return image_loader.self
          
-db.create_all()
-db.session.commit()
+# db.create_all()
+# db.session.commit()
 
 
 class store(db.Model):
@@ -93,8 +108,8 @@ class store(db.Model):
     def __repr__(self):
         return image_loader.self
          
-db.create_all()
-db.session.commit()
+# db.create_all()
+# db.session.commit()
       
 class Secure(ModelView):
     def is_accessible(self):
@@ -134,11 +149,48 @@ def pc():
 def about():
     return render_template('about.html')
 
+@app.route('/dashboard.html')
+def dashboard():
+    return render_template('dashboard.html')
 
 
 
+@app.route("/dashboard",methods=['GET','POST'])
+def productinfo():
+    if request.method == 'POST':
+        file = request.files['file']
+        if 'file' not in request.files:
+            flash('No file part')
+            return redirect(request.url)
+        if file.filename == '':
+            flash('No selected file')
+            return redirect(request.url)
+        if file and allowed_file(file.filename):
+            filename = secure_filename(file.filename)
+            
+            file.save(os.path.join(os.getcwd()+'/static', filename))
 
+            newproduct=homepage(title=request.form['productname'],
+                                price = request.form['productprice'],
+                                image_loader = filename,
+                            
+                                )
+            db.session.add(newproduct)
+            db.session.commit()
+            return "upload done"
+      
+       
 
+        
+        return jsonify({'status':200,"msg":"post compelete!!!"})
+
+    return render_template("dashboard.html")
+
+@app.route("/db")
+def database():
+    db.drop_all()
+    db.create_all()
+    return "Hello done!!!"
 
 
 
